@@ -12,17 +12,17 @@ const CARD_DATABASE = [
   { word: 'PIAZZOLLA', forbidden: ['BANDONEÓN', 'TANGO', 'NUEVO', 'ACORDEÓN', 'LIBERTANGO'] },
   { word: 'PERÓN', forbidden: ['JUAN', 'DOMINGO', 'PRESIDENTE', 'EVITA', 'GENERAL'] },
   { word: 'GUEVARA', forbidden: ['CHE', 'REVOLUCIÓN', 'CUBA', 'BARBA', 'ASTRO'] },
-  { word: 'CORTÁZAR', forbidden: ['RAYUELA', 'CUENTOS', 'PARÍS', 'BOKE', 'LITERATURA'] },
-  { word: 'SOSA', forbidden: ['MERCEDES', 'FOLKLORE', 'VOZ', 'CANCIÓN', 'LLAMA'] },
-  { word: 'CHARLY', forbidden: ['GARCÍA', 'SERU', 'INVISIBLE', 'ROCK', 'MAQUINA'] },
-  { word: 'FITO', forbidden: ['PÁEZ', 'ALMAS', '11', 'ROSARIO', 'CANTOR'] },
-  { word: 'SUSANA', forbidden: ['GIMÉNEZ', 'TELEVISIÓN', 'DIVÁN', 'BLONDA', 'SHOW'] },
+  { word: 'CORTÁZAR', forbidden: ['RAYUELA', 'CUENTOS', 'PARÍS', 'BORGES', 'LITERATURA'] },
+  { word: 'MERCEDES SOSA', forbidden: ['PACHAMAMA', 'FOLKLORE', 'VOZ', 'CANCIÓN', 'LLAMA'] },
+  { word: 'CHARLY GARCÍA', forbidden: ['SUI GENERIS', 'SERU', 'INVISIBLE', 'ROCK', 'MAQUINA'] },
+  { word: 'FITO PÁEZ', forbidden: ['MARIPOSA', 'ALMAS', '11', 'ROSARIO', 'CANTOR'] },
+  { word: 'SUSANA GIMÉNEZ', forbidden: ['HOLA', 'TELEVISIÓN', 'RUBIA', 'LLAMANDO', 'SHOW'] },
   { word: 'FANGIO', forbidden: ['FÓRMULA', 'UN', 'CAMPEÓN', 'MASERATI', 'PILOTO'] },
-  { word: 'BORIS', forbidden: ['PALLERES', 'TENIS', 'DAVIS', 'ARGENTINA', 'RAQUETA'] },
+  { word: 'BORIS BECKER', forbidden: ['PALLERES', 'TENIS', 'DAVIS', 'ARGENTINA', 'RAQUETA'] },
   { word: 'BEYONCÉ', forbidden: ['CANTANTE', 'SINGLE', 'DIVAS', 'JAY Z', 'HONEY'] },
-  { word: 'MUSK', forbidden: ['ELON', 'TESLA', 'TWITTER', 'X', 'ESPACIO'] },
+  { word: 'ELON MUSK', forbidden: ['MILLONARIO', 'TESLA', 'TWITTER', 'X', 'ESPACIO'] },
   { word: 'TAYLOR SWIFT', forbidden: ['RED', 'CANTANTE', 'ERAS', 'TOUR', 'NOVIAS'] },
-  { word: 'CR7', forbidden: ['RONALDO', 'FÚTBOL', 'MADRID', 'JUVE', 'PORTUGAL'] },
+  { word: 'CRISTIANO RONALDO', forbidden: ['RONALDO', 'FÚTBOL', 'MADRID', 'JUVE', 'PORTUGAL'] },
   { word: 'OPRAH', forbidden: ['WINFREY', 'TV', 'LIBROS', 'CLUB', 'EMPIRE'] },
   { word: 'DICAPRIO', forbidden: ['LEONARDO', 'TITANIC', 'ACTOR', 'OSCAR', 'ECOLOGÍA'] },
   { word: 'GUITARRA', forbidden: ['INSTRUMENTO', 'MÚSICA', 'CUERDAS', 'TOCAR', 'CANCIÓN'] },
@@ -116,7 +116,7 @@ const CARD_DATABASE = [
   { word: 'CÍRCULO', forbidden: ['REDONDO', 'ANILLO', 'Rueda', 'GEOMETRÍA', 'COMPÁS'] },
   { word: 'FLAN', forbidden: ['POSTRE', 'CARAMELO', 'HUEVOS', 'LECHE', 'TREMULAR'] },
   { word: 'SKATE', forbidden: ['PATINETA', 'RUEDAS', 'TRUCOS', 'JÓVENES', 'PARQUE'] },
-  { word: 'GAS', forbidden: ['ESTufa', 'COCINA', 'BOMBA', 'NATURAL', 'ENCENDER'] },
+  { word: 'GAS', forbidden: ['ESTUFA', 'COCINA', 'BOMBA', 'NATURAL', 'ENCENDER'] },
   { word: 'IZQUIERDA', forbidden: ['DERECHA', 'LADO', 'ZURDO', 'POLÍTICA', 'GIRAR'] },
   { word: 'CAMELLO', forbidden: ['JOROBA', 'DESIERTO', 'AGUA', 'DROMEDARIO', 'ORIENTE'] },
   { word: 'COMPACT DISC', forbidden: ['CD', 'MÚSICA', 'LÁSER', 'DISCOS', 'REPRODUCTOR'] },
@@ -133,14 +133,13 @@ const CARD_DATABASE = [
   { word: 'MESSI', forbidden: ['FÚTBOL', 'ARGENTINA', 'COPA', 'BALÓN', 'ROSARIO'] },
   { word: 'MARADONA', forbidden: ['DIEGO', 'MANO', 'CAMPEÓN', 'NAPOLI', 'DIOS'] },
   { word: 'EVITA', forbidden: ['PERÓN', 'DESCAMISADOS', 'BALCÓN', 'MUJER', 'SANTA'] },
-
   { word: 'JOLIE', forbidden: ['ANGELINA', 'BRAD', 'ACTRIZ', 'TOMB', 'RAIDER'] },
   { word: 'PITT', forbidden: ['BRAD', 'FIGHT', 'CLUB', 'ACTOR', 'ONCE'] },
   { word: 'LOPEZ', forbidden: ['JLO', 'CANTANTE', 'BAILE', 'ACTRIZ', 'PITT'] },
   { word: 'CRUISE', forbidden: ['TOM', 'MISSION', 'IMPOSSIBLE', 'TOP', 'GUN'] },
-  { word: 'MADONNA', forbidden: ['CANTANTE', 'MATERIAL', 'GIRL', 'CONE', 'VOGUE'] },
-  { word: 'JACKSON', forbidden: ['MICHAEL', 'MOONWALK', 'KING', 'POP', 'THRILLER'] },
-  { word: 'GAGA', forbidden: ['LADY', 'CANTANTE', 'MEAT', 'DRESS', 'POKER'] },
+  { word: 'MADONNA', forbidden: ['CANTANTE', 'MATERIAL', 'GIRL', 'VIRGIN', 'VOGUE'] },
+  { word: 'MICHAEL JACKSON', forbidden: ['BILLIE', 'MOONWALK', 'KING', 'POP', 'THRILLER'] },
+  { word: 'LADY GAGA', forbidden: ['ABRACADABRA', 'CANTANTE', 'STAR', 'BRADLEY', 'POKER'] },
   { word: 'SCHWARZENEGGER', forbidden: ['ARNOLD', 'TERMINATOR', 'GOBERNADOR', 'MÚSCULOS', 'HASTA'] },
   { word: 'OPRAH', forbidden: ['WINFREY', 'ENTREVISTADORA', 'FILANTROPA', 'HARPO', 'MEDIOS'] },
   { word: 'ORGASMO', forbidden: ['PLACER', 'SEXO', 'GOZAR', 'CLÍMAX', 'GIMIENDO'] },
@@ -161,10 +160,9 @@ const CARD_DATABASE = [
   { word: 'RICARDO FORT', forbidden: ['FORT', 'HERENCIA', 'MUSCULOS', 'SHOW', 'HERMANAS'] },
   { word: 'WANDA NARA', forbidden: ['IGUACU', 'MAURO', 'HIJAS', 'REALITY', 'ESCANDALO'] },
   { word: 'PAMPITA', forbidden: ['ARDE', 'MODELO', 'CONDUCTORA', 'DIVORCIO', 'BENEGAS'] },
-  { word: 'COTO', forbidden: ['MATÍAS', 'ALMIRÓN', 'FÚTBOL', 'SHOWMATCH', 'BESO'] },
   { word: 'TINI', forbidden: ['STOESSEL', 'CANTANTE', 'VIOLETTA', 'DISNEY', 'SEBASTIÁN'] },
   { word: 'LALI', forbidden: ['ESPOSITO', 'CANTANTE', 'ACTRIZ', 'SKAM', 'EROTICA'] },
-  { word: 'CAMILA HOMS', forbidden: ['LUJAN', 'HIJO', 'SEPARACIÓN', 'RODRIGO', 'DE LUCÍA'] },
+  { word: 'CAMILA HOMS', forbidden: ['DE PAUL', 'HIJO', 'SEPARACIÓN', 'RODRIGO', 'DE LUCÍA'] },
   { word: 'SOL PÉREZ', forbidden: ['CLIMA', 'MODELO', 'BICI', 'TELEVISIÓN', 'CURVAS'] },
   { word: 'ZULEMITA', forbidden: ['MENÉNDEZ', 'SHOW', 'HIJA', 'RICARDO', 'FORT'] },
   { word: 'LA CHINA SUÁREZ', forbidden: ['EUGENIA', 'BENEGAS', 'BESO', 'PAMPITA', 'ESCÁNDALO'] }
@@ -185,6 +183,8 @@ function TabooGame() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [swipeDirection, setSwipeDirection] = useState(null);
+  const [roundsPlayed, setRoundsPlayed] = useState([]); // Track rounds per team
+  const [expandedCard, setExpandedCard] = useState(null); // Track which card is expanded in review
   const cardRef = useRef(null);
   const timerRef = useRef(null);
 
@@ -211,6 +211,7 @@ function TabooGame() {
     }));
     setTeams(teamArray);
     setCurrentTeam(0);
+    setRoundsPlayed(Array(numTeams).fill(0)); // Initialize rounds counter
     setGameState('playing');
     startRound();
   };
@@ -248,7 +249,7 @@ function TabooGame() {
     const currentTouch = e.touches[0].clientY;
     const diff = touchStart - currentTouch;
     
-    if (Math.abs(diff) > 50) {
+    if (Math.abs(diff) > 100) { // Increased from 50 to 100 for less sensitivity
       if (diff > 0) {
         setSwipeDirection('up');
       } else {
@@ -300,11 +301,33 @@ function TabooGame() {
     
     setTeams(updatedTeams);
     
-    // Verificar si hay ganador
-    const winner = updatedTeams.find(team => team.score >= targetScore);
-    if (winner) {
-      setGameState('endgame');
+    // Update rounds played for current team
+    const updatedRounds = [...roundsPlayed];
+    updatedRounds[currentTeam] += 1;
+    setRoundsPlayed(updatedRounds);
+    
+    // Check if any team has reached target score
+    const teamReachedTarget = updatedTeams.find(team => team.score >= targetScore);
+    
+    if (teamReachedTarget) {
+      // Find the maximum rounds played
+      const maxRounds = Math.max(...updatedRounds);
+      
+      // Check if all teams have played the same number of rounds
+      const allTeamsPlayedSameRounds = updatedRounds.every(rounds => rounds === maxRounds);
+      
+      if (allTeamsPlayedSameRounds) {
+        // All teams have played equal rounds, end game
+        setGameState('endgame');
+      } else {
+        // Continue to next team so all teams play same number of rounds
+        const nextTeam = (currentTeam + 1) % numTeams;
+        setCurrentTeam(nextTeam);
+        setGameState('playing');
+        startRound();
+      }
     } else {
+      // No team reached target, continue normally
       const nextTeam = (currentTeam + 1) % numTeams;
       setCurrentTeam(nextTeam);
       setGameState('playing');
@@ -319,6 +342,8 @@ function TabooGame() {
     setCurrentTeam(0);
     setUsedCards([]);
     setRoundCards([]);
+    setRoundsPlayed([]);
+    setExpandedCard(null);
   };
 
   return (
@@ -376,7 +401,7 @@ function TabooGame() {
                 <span className="number-display">{targetScore}</span>
                 <button 
                   className="selector-btn"
-                  onClick={() => setTargetScore(Math.min(500, targetScore + 5))}
+                  onClick={() => setTargetScore(Math.min(50, targetScore + 5))}
                 >
                   +
                 </button>
@@ -469,20 +494,43 @@ function TabooGame() {
       {gameState === 'review' && (
         <div className="review-screen">
           <h2 className="review-title">¡Tiempo finalizado!</h2>
-          <p className="review-subtitle">Revisa las cartas adivinadas</p>
+          <p className="review-subtitle">Toca una carta para ver las palabras prohibidas</p>
 
           <div className="review-cards">
-            {roundCards.filter(c => c.correct).map((card, index) => (
-              <div key={index} className="review-card">
-                <div className="review-card-word">{card.word}</div>
-                <button 
-                  className="remove-btn"
-                  onClick={() => removeCard(roundCards.indexOf(card))}
+            {roundCards.filter(c => c.correct).map((card, index) => {
+              const cardIndex = roundCards.indexOf(card);
+              const isExpanded = expandedCard === cardIndex;
+              
+              return (
+                <div 
+                  key={index} 
+                  className={`review-card ${isExpanded ? 'expanded' : ''}`}
+                  onClick={() => setExpandedCard(isExpanded ? null : cardIndex)}
                 >
-                  ✕
-                </button>
-              </div>
-            ))}
+                  <div className="review-card-content">
+                    <div className="review-card-word">{card.word}</div>
+                    {isExpanded && (
+                      <div className="review-forbidden-words">
+                        <div className="review-forbidden-label">Palabras prohibidas:</div>
+                        {card.forbidden.map((word, i) => (
+                          <div key={i} className="review-forbidden-item">{word}</div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <button 
+                    className="remove-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeCard(cardIndex);
+                      setExpandedCard(null);
+                    }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              );
+            })}
           </div>
 
           <div className="review-total">
