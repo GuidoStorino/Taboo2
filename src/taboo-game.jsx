@@ -185,8 +185,64 @@ function TabooGame() {
   const [swipeDirection, setSwipeDirection] = useState(null);
   const [roundsPlayed, setRoundsPlayed] = useState([]); // Track rounds per team
   const [expandedCard, setExpandedCard] = useState(null); // Track which card is expanded in review
+  const [showRestoreNotification, setShowRestoreNotification] = useState(false); // Show when game is restored
   const cardRef = useRef(null);
   const timerRef = useRef(null);
+
+  // Load saved game state on mount
+  useEffect(() => {
+    const savedGame = localStorage.getItem('taboo-game-state');
+    if (savedGame) {
+      try {
+        const parsedState = JSON.parse(savedGame);
+        
+        // Only restore if game is in progress (not setup or endgame)
+        if (parsedState.gameState === 'playing' || parsedState.gameState === 'review') {
+          setGameState(parsedState.gameState);
+          setNumTeams(parsedState.numTeams);
+          setTimeLimit(parsedState.timeLimit);
+          setTargetScore(parsedState.targetScore);
+          setTeams(parsedState.teams);
+          setCurrentTeam(parsedState.currentTeam);
+          setCurrentCard(parsedState.currentCard);
+          setUsedCards(parsedState.usedCards);
+          setRoundCards(parsedState.roundCards);
+          setTimeLeft(parsedState.timeLeft);
+          setRoundsPlayed(parsedState.roundsPlayed);
+          
+          // Show restore notification
+          setShowRestoreNotification(true);
+          setTimeout(() => setShowRestoreNotification(false), 3000);
+        }
+      } catch (error) {
+        console.error('Error loading saved game:', error);
+        localStorage.removeItem('taboo-game-state');
+      }
+    }
+  }, []);
+
+  // Save game state whenever it changes
+  useEffect(() => {
+    if (gameState === 'playing' || gameState === 'review') {
+      const gameStateToSave = {
+        gameState,
+        numTeams,
+        timeLimit,
+        targetScore,
+        teams,
+        currentTeam,
+        currentCard,
+        usedCards,
+        roundCards,
+        timeLeft,
+        roundsPlayed,
+      };
+      localStorage.setItem('taboo-game-state', JSON.stringify(gameStateToSave));
+    } else if (gameState === 'endgame') {
+      // Clear saved game when game ends
+      localStorage.removeItem('taboo-game-state');
+    }
+  }, [gameState, numTeams, timeLimit, targetScore, teams, currentTeam, currentCard, usedCards, roundCards, timeLeft, roundsPlayed]);
 
   // Obtener una carta aleatoria no usada
   const getRandomCard = () => {
@@ -344,10 +400,56 @@ function TabooGame() {
     setRoundCards([]);
     setRoundsPlayed([]);
     setExpandedCard(null);
+    localStorage.removeItem('taboo-game-state'); // Clear saved game
+  };
+
+  // Check if there's a saved game
+  const hasSavedGame = () => {
+    const savedGame = localStorage.getItem('taboo-game-state');
+    if (!savedGame) return false;
+    
+    try {
+      const parsedState = JSON.parse(savedGame);
+      return parsedState.gameState === 'playing' || parsedState.gameState === 'review';
+    } catch {
+      return false;
+    }
+  };
+
+  // Continue saved game
+  const continueSavedGame = () => {
+    const savedGame = localStorage.getItem('taboo-game-state');
+    if (savedGame) {
+      try {
+        const parsedState = JSON.parse(savedGame);
+        setGameState(parsedState.gameState);
+        setNumTeams(parsedState.numTeams);
+        setTimeLimit(parsedState.timeLimit);
+        setTargetScore(parsedState.targetScore);
+        setTeams(parsedState.teams);
+        setCurrentTeam(parsedState.currentTeam);
+        setCurrentCard(parsedState.currentCard);
+        setUsedCards(parsedState.usedCards);
+        setRoundCards(parsedState.roundCards);
+        setTimeLeft(parsedState.timeLeft);
+        setRoundsPlayed(parsedState.roundsPlayed);
+      } catch (error) {
+        console.error('Error loading saved game:', error);
+        localStorage.removeItem('taboo-game-state');
+      }
+    }
   };
 
   return (
     <div className="taboo-game">
+      {/* Restore Notification */}
+      {showRestoreNotification && (
+        <div className="restore-notification">
+          <span className="restore-icon">🔄</span>
+          <span>Partida restaurada</span>
+        </div>
+      )}
+
       {/* Setup Screen */}
       {gameState === 'setup' && (
         <div className="setup-screen">
@@ -408,6 +510,12 @@ function TabooGame() {
               </div>
             </div>
           </div>
+
+          {hasSavedGame() && (
+            <button className="continue-btn" onClick={continueSavedGame}>
+              CONTINUAR PARTIDA
+            </button>
+          )}
 
           <button className="start-btn" onClick={startGame}>
             COMENZAR JUEGO
