@@ -186,6 +186,7 @@ function TabooGame() {
   const [roundsPlayed, setRoundsPlayed] = useState([]); // Track rounds per team
   const [expandedCard, setExpandedCard] = useState(null); // Track which card is expanded in review
   const [showRestoreNotification, setShowRestoreNotification] = useState(false); // Show when game is restored
+  const [showEndGameModal, setShowEndGameModal] = useState(false); // Show confirmation modal to end game
   const cardRef = useRef(null);
   const timerRef = useRef(null);
 
@@ -400,7 +401,14 @@ function TabooGame() {
     setRoundCards([]);
     setRoundsPlayed([]);
     setExpandedCard(null);
+    setShowEndGameModal(false);
     localStorage.removeItem('taboo-game-state'); // Clear saved game
+  };
+
+  // Confirm ending game early
+  const confirmEndGame = () => {
+    setShowEndGameModal(false);
+    resetGame();
   };
 
   // Check if there's a saved game
@@ -530,26 +538,35 @@ function TabooGame() {
             <div className="team-indicator">
               {teams[currentTeam].name}
             </div>
-            <div className="timer">
-              <div className="timer-circle">
-                <svg className="timer-svg" viewBox="0 0 100 100">
-                  <circle
-                    className="timer-bg"
-                    cx="50"
-                    cy="50"
-                    r="45"
-                  />
-                  <circle
-                    className="timer-progress"
-                    cx="50"
-                    cy="50"
-                    r="45"
-                    style={{
-                      strokeDasharray: `${(timeLeft / timeLimit) * 283} 283`,
-                    }}
-                  />
-                </svg>
-                <span className="timer-text">{timeLeft}</span>
+            <div className="header-right">
+              <button 
+                className="end-game-btn" 
+                onClick={() => setShowEndGameModal(true)}
+                title="Terminar partida"
+              >
+                ✕
+              </button>
+              <div className="timer">
+                <div className="timer-circle">
+                  <svg className="timer-svg" viewBox="0 0 100 100">
+                    <circle
+                      className="timer-bg"
+                      cx="50"
+                      cy="50"
+                      r="45"
+                    />
+                    <circle
+                      className="timer-progress"
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      style={{
+                        strokeDasharray: `${(timeLeft / timeLimit) * 283} 283`,
+                      }}
+                    />
+                  </svg>
+                  <span className="timer-text">{timeLeft}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -601,6 +618,14 @@ function TabooGame() {
       {/* Review Screen */}
       {gameState === 'review' && (
         <div className="review-screen">
+          <button 
+            className="end-game-btn review-end-btn" 
+            onClick={() => setShowEndGameModal(true)}
+            title="Terminar partida"
+          >
+            ✕
+          </button>
+          
           <h2 className="review-title">¡Tiempo finalizado!</h2>
           <p className="review-subtitle">Toca una carta para ver las palabras prohibidas</p>
 
@@ -672,6 +697,32 @@ function TabooGame() {
           <button className="play-again-btn" onClick={resetGame}>
             JUGAR DE NUEVO
           </button>
+        </div>
+      )}
+
+      {/* End Game Confirmation Modal */}
+      {showEndGameModal && (
+        <div className="modal-overlay" onClick={() => setShowEndGameModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3 className="modal-title">¿Terminar partida?</h3>
+            <p className="modal-text">
+              Se perderá el progreso actual y volverás al menú principal.
+            </p>
+            <div className="modal-buttons">
+              <button 
+                className="modal-btn modal-cancel"
+                onClick={() => setShowEndGameModal(false)}
+              >
+                Cancelar
+              </button>
+              <button 
+                className="modal-btn modal-confirm"
+                onClick={confirmEndGame}
+              >
+                Terminar
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
